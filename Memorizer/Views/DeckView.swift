@@ -43,7 +43,7 @@ struct DeckView: View {
     var buttonsBar: some View {
         HStack {
             Button("Sort by familiarity") {
-                viewModel.sort()
+                viewModel.toggleSort.send()
             }
             Spacer()
             NavigationLink(destination: PhraseEditView(dependencies: dependencies)) {

@@ -4,14 +4,14 @@
 
 import Foundation
 
-struct Phrase: Identifiable {
+struct Phrase: Identifiable, Equatable {
     let id: UUID = .init()
     let text: String
     let contexts: [Context]
     let familiarity: Int
 }
 
-struct Context: Identifiable {
+struct Context: Identifiable, Equatable {
     let id: UUID = .init()
     let sentence: String
 }

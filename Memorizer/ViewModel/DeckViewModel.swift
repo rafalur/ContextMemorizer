@@ -2,8 +2,8 @@
 //  DeckViewModel.swift
 //  Memorizer
 
-import Foundation
 import Combine
+import Foundation
 
 class DeckViewModel: ObservableObject {
     enum Sorting {
@@ -15,30 +15,29 @@ class DeckViewModel: ObservableObject {
         }
     }
 
-    private let phrasesRepo: PhrasesRepository
-    
-    private var cancellables = [AnyCancellable]()
+    // Input
+    let toggleSort = PassthroughSubject<Void, Never>()
 
+    // Output
     @Published var phrases: [Phrase] = []
+    @Published var sortingType: Sorting = .familiarityAscending // not used yet
 
-    var sortingType: Sorting = .familiarityAscending
-        
+    private let phrasesRepo: PhrasesRepository
+    private var cancellables = [AnyCancellable]()
 
     init(phrasesRepo: PhrasesRepository) {
         self.phrasesRepo = phrasesRepo
         
-        phrasesRepo.phrasesPublisher
-            .map { [sortingType] in $0.sortByFamiliarity(ascending: sortingType == .familiarityAscending) }
-            .assign(to: \.phrases, on: self)
+        toggleSort.sink { [weak self] in
+            self?.sortingType.toggle()
+        }
         .store(in: &cancellables)
-    }
 
-    func sort() {
-        sortingType.toggle()
-    }
-
-    func add(phrase: Phrase) {
-        phrases.append(phrase)
+        $sortingType
+            .combineLatest(phrasesRepo.phrasesPublisher)
+            .map { $0.1.sortByFamiliarity(ascending: $0.0 == .familiarityAscending)}
+            .removeDuplicates()
+            .assign(to: &$phrases)
     }
 }
 
