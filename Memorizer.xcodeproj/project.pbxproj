@@ -25,6 +25,7 @@
 		B5C5855E29BCAA610049D4DF /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C5855D29BCAA610049D4DF /* Dependencies.swift */; };
 		B5C5856029BCAAA70049D4DF /* PhrasesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C5855F29BCAAA70049D4DF /* PhrasesRepository.swift */; };
 		B5C5856229BCAAC00049D4DF /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C5856129BCAAC00049D4DF /* MockData.swift */; };
+		B5C5856429BCD0300049D4DF /* MockedPhrasesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C5856329BCD0300049D4DF /* MockedPhrasesRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		B5C5855D29BCAA610049D4DF /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		B5C5855F29BCAAA70049D4DF /* PhrasesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasesRepository.swift; sourceTree = "<group>"; };
 		B5C5856129BCAAC00049D4DF /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		B5C5856329BCD0300049D4DF /* MockedPhrasesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedPhrasesRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			children = (
 				B5B3DE80296ED67B005D37DA /* Phrase.swift */,
 				B5C5855F29BCAAA70049D4DF /* PhrasesRepository.swift */,
+				B5C5856329BCD0300049D4DF /* MockedPhrasesRepository.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				B5B3DE81296ED67B005D37DA /* Phrase.swift in Sources */,
 				B5C5855E29BCAA610049D4DF /* Dependencies.swift in Sources */,
 				B5C5855C29BBBB080049D4DF /* PhraseCard.swift in Sources */,
+				B5C5856429BCD0300049D4DF /* MockedPhrasesRepository.swift in Sources */,
 				B5C5856029BCAAA70049D4DF /* PhrasesRepository.swift in Sources */,
 				B5B3DE7E296ED5CA005D37DA /* DeckView.swift in Sources */,
 				B5C5855929BBBAAB0049D4DF /* StarsView.swift in Sources */,

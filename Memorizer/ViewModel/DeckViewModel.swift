@@ -3,6 +3,7 @@
 //  Memorizer
 
 import Foundation
+import Combine
 
 class DeckViewModel: ObservableObject {
     enum Sorting {
@@ -15,39 +16,21 @@ class DeckViewModel: ObservableObject {
     }
 
     private let phrasesRepo: PhrasesRepository
+    
+    private var cancellables = [AnyCancellable]()
 
     @Published var phrases: [Phrase] = []
 
-    var sortingType: Sorting = .familiarityAscending {
-        didSet {
-            sortPhrases()
-        }
-    }
+    var sortingType: Sorting = .familiarityAscending
+        
 
     init(phrasesRepo: PhrasesRepository) {
         self.phrasesRepo = phrasesRepo
-
-        fetchPhrases()
-    }
-
-    private func fetchPhrases() {
-        phrasesRepo.allPhrases { [weak self] result in
-            switch result {
-            case let .success(phrases):
-                self?.phrases = phrases
-            case let .failure(error):
-                print("Fetching phrases failure: \(error.localizedDescription)")
-            }
-        }
-    }
-
-    private func sortPhrases() {
-        switch sortingType {
-        case .familiarityAscending:
-            phrases.sort { $0.familiarity > $1.familiarity }
-        case .familiarityDescending:
-            phrases.sort { $0.familiarity < $1.familiarity }
-        }
+        
+        phrasesRepo.phrasesPublisher
+            .map { [sortingType] in $0.sortByFamiliarity(ascending: sortingType == .familiarityAscending) }
+            .assign(to: \.phrases, on: self)
+        .store(in: &cancellables)
     }
 
     func sort() {
@@ -56,5 +39,14 @@ class DeckViewModel: ObservableObject {
 
     func add(phrase: Phrase) {
         phrases.append(phrase)
+    }
+}
+
+fileprivate extension Array where Element == Phrase {
+    func sortByFamiliarity(ascending: Bool) -> [Phrase] {
+        if ascending {
+            return sorted { $0.familiarity > $1.familiarity }
+        }
+        return sorted { $0.familiarity < $1.familiarity }
     }
 }

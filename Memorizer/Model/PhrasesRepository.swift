@@ -3,7 +3,10 @@
 //  Memorizer
 
 import Foundation
+import Combine
 
 protocol PhrasesRepository {
-    func allPhrases(_ completion: @escaping (Result<[Phrase], Error>) -> Void)
+    var phrasesPublisher: AnyPublisher<[Phrase], Never> { get }
+    
+    func load()
 }

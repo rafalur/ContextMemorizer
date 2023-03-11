@@ -4,6 +4,7 @@
 
 import Foundation
 
+
 class Dependencies: ObservableObject {
     let phrasesRepo: PhrasesRepository
 
@@ -16,14 +17,4 @@ class Dependencies: ObservableObject {
     }
 }
 
-struct MockedPhrasesRepo: PhrasesRepository {
-    private let phrases: [Phrase]
 
-    init(initialPhrases: [Phrase] = testPhrases) {
-        phrases = initialPhrases
-    }
-
-    func allPhrases(_ completion: @escaping (Result<[Phrase], Error>) -> Void) {
-        completion(.success(phrases))
-    }
-}
