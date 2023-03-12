@@ -24,6 +24,7 @@ class PhraseEditViewModel: ObservableObject {
     @Published var saveErrorDescription: String? // To be handled
     @Published var textValid: Bool = true
     @Published var done: Bool = false
+    @Published var isSaving: Bool = false
 
     private var phraseToEdit: Phrase?
     private var cancellables = [AnyCancellable]()
@@ -38,20 +39,24 @@ class PhraseEditViewModel: ObservableObject {
         }
 
         let phraseToSave = Publishers.CombineLatest($text, $addedContexts)
-            .filter { !$0.0.isEmpty }
-            .map { Phrase(text: $0.0, contexts: $0.1, familiarity: 0) }
+            .map { components -> Phrase? in
+                guard !components.0.isEmpty else { return nil }
+                return Phrase(text: components.0, contexts: components.1, familiarity: 0)
+            }
 
         let isTextValid = $text.map { !$0.isEmpty }
-        
+
         let clearEmptyTextError = isTextValid.filter { $0 }
 
         save.withLatestFrom(isTextValid)
             .merge(with: clearEmptyTextError)
             .assign(to: &$textValid)
 
-        let saveResult = save.withLatestFrom(phraseToSave)
+        let phraseReadyToSave = save.withLatestFrom(phraseToSave).compactMap { $0 }
+
+        let saveResult = phraseReadyToSave
             .flatMap { [weak self] phrase in
-                let publisher  = self?.addOrUpdate(phrase: phrase) ?? Empty<Void,Error>(completeImmediately: true).eraseToAnyPublisher()
+                let publisher = self?.addOrUpdate(phrase: phrase) ?? Empty<Void, Error>(completeImmediately: true).eraseToAnyPublisher()
                 return publisher
                     .map { _ in
                         Result<Void, Error>.success(())
@@ -64,13 +69,17 @@ class PhraseEditViewModel: ObservableObject {
 
         saveResult
             .compactMap { try? $0.get() }
-            .map{ _ in true }
+            .map { _ in true }
             .assign(to: &$done)
 
         saveResult
             .compactMap { $0.getError()?.localizedDescription }
             .assign(to: &$saveErrorDescription)
 
+        let showSavingIndicator = phraseReadyToSave.map { _ in true }
+            .merge(with: saveResult.map { _ in false })
+
+        showSavingIndicator.assign(to: &$isSaving)
     }
 
     private func addOrUpdate(phrase: Phrase) -> AnyPublisher<Void, Error> {
@@ -80,7 +89,6 @@ class PhraseEditViewModel: ObservableObject {
         }
         return phrasesRepo.add(phrase: phrase)
     }
-
 
     func add(context: Context) {
         if !context.sentence.isEmpty {

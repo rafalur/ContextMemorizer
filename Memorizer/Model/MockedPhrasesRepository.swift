@@ -17,16 +17,12 @@ class MockedPhrasesRepo: PhrasesRepository {
     init(initialPhrases: [Phrase] = testPhrases) {
         phrases = initialPhrases
     }
-    
-    func load() {
-        
-    }
 
     func add(phrase: Phrase) -> AnyPublisher<Void, Error> {
         phrases.append(phrase)
 
         return Just(())
-            .delay(for: 0.5, scheduler: RunLoop.main)
+            .delay(for: 1, scheduler: RunLoop.main)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()    }
     
@@ -36,7 +32,7 @@ class MockedPhrasesRepo: PhrasesRepository {
             phrases.append(phrase)
             
             return Just(())
-                .delay(for: 0.5, scheduler: RunLoop.main)
+                .delay(for: 1, scheduler: RunLoop.main)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }

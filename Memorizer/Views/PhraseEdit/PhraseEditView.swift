@@ -35,9 +35,16 @@ struct PhraseEditView: View {
         .padding()
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button("Save") {
+                Button {
                     viewModel.save.send()
-                }
+                        } label: {
+                            if viewModel.isSaving {
+                                ProgressView()
+                            } else {
+                                Text("Save")
+                            }
+                        }
+                .disabled(viewModel.isSaving)
                 .controlSize(.regular)
                 .buttonStyle(.borderedProminent)
             }
