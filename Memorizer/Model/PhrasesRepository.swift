@@ -9,6 +9,6 @@ protocol PhrasesRepository {
     var phrasesPublisher: AnyPublisher<[Phrase], Never> { get }
     
     func load()
-    func add(phrase: Phrase)
-    func update(phrase: Phrase)
+    func add(phrase: Phrase) -> AnyPublisher<Void, Error>
+    func update(phrase: Phrase) -> AnyPublisher<Void, Error>    
 }

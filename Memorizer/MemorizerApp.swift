@@ -24,7 +24,7 @@ struct MemorizerApp: App {
                     .navigationDestination(for: NavigationDestinations.self) { value in
                         switch value {
                             case .phraseDetails(let phrase):
-                                PhraseView(phrase: phrase)
+                                PhraseView(dependencies: dependencies, phrase: phrase)
                                     .environmentObject(dependencies)
                                     .environmentObject(coordinator)
                             case .phraseEdit(let phrase):

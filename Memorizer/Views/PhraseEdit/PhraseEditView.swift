@@ -49,7 +49,7 @@ struct PhraseEditView: View {
     }
 
     var phraseTextEdit: some View {
-        let textFieldFrameColor: Color = viewModel.saveError == nil ? .gray : .red
+        let textFieldFrameColor: Color = viewModel.textValid ? .gray : .red
         return TextField("Phrase", text: $viewModel.text)
             .padding(10)
             .overlay(

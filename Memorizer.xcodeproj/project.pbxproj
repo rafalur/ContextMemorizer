@@ -28,6 +28,7 @@
 		B5C5856429BCD0300049D4DF /* MockedPhrasesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C5856329BCD0300049D4DF /* MockedPhrasesRepository.swift */; };
 		B5C5856729BCF2030049D4DF /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = B5C5856629BCF2030049D4DF /* CombineExt */; };
 		B5C5856929BD2EBE0049D4DF /* NavigationDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C5856829BD2EBE0049D4DF /* NavigationDestinations.swift */; };
+		B5C5856B29BDE6D10049D4DF /* PhraseDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C5856A29BDE6D10049D4DF /* PhraseDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		B5C5856129BCAAC00049D4DF /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		B5C5856329BCD0300049D4DF /* MockedPhrasesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedPhrasesRepository.swift; sourceTree = "<group>"; };
 		B5C5856829BD2EBE0049D4DF /* NavigationDestinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDestinations.swift; sourceTree = "<group>"; };
+		B5C5856A29BDE6D10049D4DF /* PhraseDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 			children = (
 				B5B3DE86297038D2005D37DA /* DeckViewModel.swift */,
 				B5B3DE8B29703995005D37DA /* PhraseEditViewModel.swift */,
+				B5C5856A29BDE6D10049D4DF /* PhraseDetailsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				B5C5856929BD2EBE0049D4DF /* NavigationDestinations.swift in Sources */,
 				B5C5856429BCD0300049D4DF /* MockedPhrasesRepository.swift in Sources */,
 				B5C5856029BCAAA70049D4DF /* PhrasesRepository.swift in Sources */,
+				B5C5856B29BDE6D10049D4DF /* PhraseDetailsViewModel.swift in Sources */,
 				B5B3DE7E296ED5CA005D37DA /* DeckView.swift in Sources */,
 				B5C5855929BBBAAB0049D4DF /* StarsView.swift in Sources */,
 				B5B3DE8A29703938005D37DA /* PhraseEdit+Components.swift in Sources */,

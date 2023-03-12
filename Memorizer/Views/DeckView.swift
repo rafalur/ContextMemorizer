@@ -19,22 +19,12 @@ struct DeckView: View {
             phrasesList
             buttonsBar
         }
-        .navigationDestination(for: Phrase.self) { phrase in
-            PhraseView(phrase: phrase)
-                .environmentObject(dependencies)
-                .environmentObject(coordinator)
-        }
-        .navigationDestination(for: EditPhraseNavDestination.self) { editPhraseDestination in
-            PhraseEditView(dependencies: dependencies, phraseToEdit: editPhraseDestination.phrase)
-                .environmentObject(dependencies)
-                .environmentObject(coordinator)
-        }
     }
 
     var phrasesList: some View {
         List {
             ForEach(viewModel.phrases) { phrase in
-                NavigationLink(value: phrase) {
+                NavigationLink(value: NavigationDestinations.phraseDetails(phrase: phrase)) {
                     HStack {
                         Text(phrase.text)
                         Spacer()
@@ -55,7 +45,7 @@ struct DeckView: View {
                 viewModel.toggleSort.send()
             }
             Spacer()
-            NavigationLink(value: EditPhraseNavDestination(phrase: nil)) {
+            NavigationLink(value: NavigationDestinations.phraseEdit(phrase: nil)) {
                 Text("Add phrase")
             }
 

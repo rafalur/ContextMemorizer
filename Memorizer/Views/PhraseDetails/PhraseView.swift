@@ -4,24 +4,22 @@
 
 import SwiftUI
 
-struct EditPhraseNavDestination: Hashable {
-    let phrase: Phrase?
-}
-
 struct PhraseView: View {
     @EnvironmentObject var dependencies: Dependencies
     @EnvironmentObject var coordinator: Coordinator
 
-    let phrase: Phrase // at the moment the view is static so skipping the VM for now
-
-    @State var selectedTag: String?
-    @State private var isShowingSecondView: Bool = false
+    @StateObject var viewModel: PhraseDetailsViewModel
+    
+    init(dependencies: Dependencies, phrase: Phrase) {
+        let viewModel = PhraseDetailsViewModel(phrase: phrase, phrasesRepo: dependencies.phrasesRepo)
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
 
     var body: some View {
         VStack {
-            PhraseCard(text: phrase.text).padding(.vertical, 30)
+            PhraseCard(text: viewModel.phrase.text).padding(.vertical, 30)
             List {
-                ForEach(phrase.contexts) {
+                ForEach(viewModel.phrase.contexts) {
                     ContextItemView(context: $0)
                 }
             }
@@ -39,7 +37,7 @@ struct PhraseView: View {
             .buttonStyle(.borderedProminent)
             
             Button("Edit") {
-                coordinator.path.append(EditPhraseNavDestination(phrase: phrase))
+                coordinator.path.append(NavigationDestinations.phraseEdit(phrase: viewModel.phrase))
             }
             .controlSize(.regular)
             .buttonStyle(.borderedProminent)
@@ -61,8 +59,7 @@ struct ContextItemView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PhraseView(phrase: testPhrases[0])
+            PhraseView(dependencies: .mock, phrase: testPhrases[0])
         }
-        PhraseView(phrase: testPhrases[1])
     }
 }
