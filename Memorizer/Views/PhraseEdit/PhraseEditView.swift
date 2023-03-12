@@ -10,8 +10,8 @@ struct PhraseEditView: View {
     @EnvironmentObject private var dependencies: Dependencies
     @StateObject private var viewModel: PhraseEditViewModel
 
-    init(dependencies: Dependencies) {
-        let viewModel = PhraseEditViewModel(phrasesRepo: dependencies.phrasesRepo)
+    init(dependencies: Dependencies, phraseToEdit: Phrase? = nil) {
+        let viewModel = PhraseEditViewModel(phraseToEdit: phraseToEdit, phrasesRepo: dependencies.phrasesRepo)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
@@ -36,14 +36,15 @@ struct PhraseEditView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button("Save") {
-                    viewModel.save()
-                    presentationMode.wrappedValue.dismiss()
+                    viewModel.save.send()
                 }
                 .controlSize(.regular)
                 .buttonStyle(.borderedProminent)
             }
-        }.onDisappear {
-            viewModel.reset()
+        } .onChange(of: viewModel.done) { done in
+            if done {
+                presentationMode.wrappedValue.dismiss()
+            }
         }
     }
 

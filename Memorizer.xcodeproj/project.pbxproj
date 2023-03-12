@@ -26,6 +26,8 @@
 		B5C5856029BCAAA70049D4DF /* PhrasesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C5855F29BCAAA70049D4DF /* PhrasesRepository.swift */; };
 		B5C5856229BCAAC00049D4DF /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C5856129BCAAC00049D4DF /* MockData.swift */; };
 		B5C5856429BCD0300049D4DF /* MockedPhrasesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C5856329BCD0300049D4DF /* MockedPhrasesRepository.swift */; };
+		B5C5856729BCF2030049D4DF /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = B5C5856629BCF2030049D4DF /* CombineExt */; };
+		B5C5856929BD2EBE0049D4DF /* NavigationDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C5856829BD2EBE0049D4DF /* NavigationDestinations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,7 @@
 		B5C5855F29BCAAA70049D4DF /* PhrasesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasesRepository.swift; sourceTree = "<group>"; };
 		B5C5856129BCAAC00049D4DF /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		B5C5856329BCD0300049D4DF /* MockedPhrasesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedPhrasesRepository.swift; sourceTree = "<group>"; };
+		B5C5856829BD2EBE0049D4DF /* NavigationDestinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDestinations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5C5856729BCF2030049D4DF /* CombineExt in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +132,7 @@
 				B5B3DE5429642410005D37DA /* Memorizer.entitlements */,
 				B5B3DE5529642410005D37DA /* Preview Content */,
 				B5C5856129BCAAC00049D4DF /* MockData.swift */,
+				B5C5856829BD2EBE0049D4DF /* NavigationDestinations.swift */,
 			);
 			path = Memorizer;
 			sourceTree = "<group>";
@@ -229,6 +234,9 @@
 			dependencies = (
 			);
 			name = Memorizer;
+			packageProductDependencies = (
+				B5C5856629BCF2030049D4DF /* CombineExt */,
+			);
 			productName = Memorizer;
 			productReference = B5B3DE4B2964240D005D37DA /* Memorizer.app */;
 			productType = "com.apple.product-type.application";
@@ -301,6 +309,9 @@
 				Base,
 			);
 			mainGroup = B5B3DE422964240D005D37DA;
+			packageReferences = (
+				B5C5856529BCF2030049D4DF /* XCRemoteSwiftPackageReference "CombineExt" */,
+			);
 			productRefGroup = B5B3DE4C2964240D005D37DA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -352,6 +363,7 @@
 				B5B3DE81296ED67B005D37DA /* Phrase.swift in Sources */,
 				B5C5855E29BCAA610049D4DF /* Dependencies.swift in Sources */,
 				B5C5855C29BBBB080049D4DF /* PhraseCard.swift in Sources */,
+				B5C5856929BD2EBE0049D4DF /* NavigationDestinations.swift in Sources */,
 				B5C5856429BCD0300049D4DF /* MockedPhrasesRepository.swift in Sources */,
 				B5C5856029BCAAA70049D4DF /* PhrasesRepository.swift in Sources */,
 				B5B3DE7E296ED5CA005D37DA /* DeckView.swift in Sources */,
@@ -708,6 +720,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B5C5856529BCF2030049D4DF /* XCRemoteSwiftPackageReference "CombineExt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CombineCommunity/CombineExt.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B5C5856629BCF2030049D4DF /* CombineExt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5C5856529BCF2030049D4DF /* XCRemoteSwiftPackageReference "CombineExt" */;
+			productName = CombineExt;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B5B3DE432964240D005D37DA /* Project object */;
 }

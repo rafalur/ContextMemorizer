@@ -4,8 +4,18 @@
 
 import SwiftUI
 
+struct EditPhraseNavDestination: Hashable {
+    let phrase: Phrase?
+}
+
 struct PhraseView: View {
+    @EnvironmentObject var dependencies: Dependencies
+    @EnvironmentObject var coordinator: Coordinator
+
     let phrase: Phrase // at the moment the view is static so skipping the VM for now
+
+    @State var selectedTag: String?
+    @State private var isShowingSecondView: Bool = false
 
     var body: some View {
         VStack {
@@ -23,36 +33,16 @@ struct PhraseView: View {
     var toolbar: some ToolbarContent {
         ToolbarItemGroup(placement: .navigationBarTrailing) {
             Button("Practice ") {
+                
             }
             .controlSize(.regular)
             .buttonStyle(.borderedProminent)
-            EditButton()
-        }
-    }
-}
-
-private extension PhraseView {
-    struct EditButton: View {
-        @EnvironmentObject var dependencies: Dependencies
-        @State var selectedTag: String?
-
-        let editLinkTag = "editLinkTag"
-
-        var body: some View {
+            
             Button("Edit") {
-                selectedTag = editLinkTag
+                coordinator.path.append(EditPhraseNavDestination(phrase: phrase))
             }
             .controlSize(.regular)
             .buttonStyle(.borderedProminent)
-            .background(
-                // TODO: use non-deprecated version
-                NavigationLink(
-                    destination: PhraseEditView(dependencies: dependencies),
-                    tag: editLinkTag,
-                    selection: $selectedTag,
-                    label: { EmptyView() }
-                )
-            )
         }
     }
 }

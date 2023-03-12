@@ -5,6 +5,7 @@
 import SwiftUI
 
 struct DeckView: View {
+    @EnvironmentObject var coordinator: Coordinator
     @EnvironmentObject private var dependencies: Dependencies
     @StateObject private var viewModel: DeckViewModel
 
@@ -14,18 +15,26 @@ struct DeckView: View {
     }
 
     var body: some View {
-        NavigationView {
-            VStack {
-                phrasesList
-                buttonsBar
-            }
+        VStack {
+            phrasesList
+            buttonsBar
+        }
+        .navigationDestination(for: Phrase.self) { phrase in
+            PhraseView(phrase: phrase)
+                .environmentObject(dependencies)
+                .environmentObject(coordinator)
+        }
+        .navigationDestination(for: EditPhraseNavDestination.self) { editPhraseDestination in
+            PhraseEditView(dependencies: dependencies, phraseToEdit: editPhraseDestination.phrase)
+                .environmentObject(dependencies)
+                .environmentObject(coordinator)
         }
     }
 
     var phrasesList: some View {
         List {
             ForEach(viewModel.phrases) { phrase in
-                NavigationLink(destination: PhraseView(phrase: phrase)) {
+                NavigationLink(value: phrase) {
                     HStack {
                         Text(phrase.text)
                         Spacer()
@@ -46,7 +55,7 @@ struct DeckView: View {
                 viewModel.toggleSort.send()
             }
             Spacer()
-            NavigationLink(destination: PhraseEditView(dependencies: dependencies)) {
+            NavigationLink(value: EditPhraseNavDestination(phrase: nil)) {
                 Text("Add phrase")
             }
 
