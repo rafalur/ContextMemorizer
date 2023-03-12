@@ -15,41 +15,49 @@ struct DeckView: View {
     }
 
     var body: some View {
-        VStack {
-            phrasesList
-            buttonsBar
+        phrasesList
+        .toolbar { toolbar }
+    }
+    
+    @ToolbarContentBuilder
+    var toolbar: some ToolbarContent {
+        ToolbarItemGroup(placement: .navigationBarTrailing) {
+            Button {
+                viewModel.toggleSort.send()
+            } label: {
+                Image(systemName: "arrow.up.arrow.down")
+            }
+            .controlSize(.regular)
+            .buttonStyle(.borderedProminent)
+
+            Button {
+                coordinator.path.append(NavigationDestinations.phraseEdit(phrase: nil))
+            } label: {
+                Image(systemName: "plus.app")
+            }
+            .controlSize(.regular)
+            .buttonStyle(.borderedProminent)
         }
     }
 
     var phrasesList: some View {
         List {
-            ForEach(viewModel.phrases) { phrase in
-                NavigationLink(value: NavigationDestinations.phraseDetails(phrase: phrase)) {
-                    HStack {
-                        Text(phrase.text)
-                        Spacer()
-                        StarsView(value: phrase.familiarity, size: .small)
+            Section("Phrases") {
+                ForEach(viewModel.phrases) { phrase in
+                    NavigationLink(value: NavigationDestinations.phraseDetails(phrase: phrase)) {
+                        HStack {
+                            Text(phrase.text)
+                            Spacer()
+                            StarsView(value: phrase.familiarity, size: .small)
+                        }
                     }
+                    .foregroundColor(.white)
+                    .listRowBackground(Color.gray.opacity(0.7))
                 }
-                .foregroundColor(.white)
-                .listRowBackground(Color.green.opacity(0.5))
             }
         }
         .scrollContentBackground(.hidden)
         .background(.clear)
-    }
-
-    var buttonsBar: some View {
-        HStack {
-            Button("Sort by familiarity") {
-                viewModel.toggleSort.send()
-            }
-            Spacer()
-            NavigationLink(value: NavigationDestinations.phraseEdit(phrase: nil)) {
-                Text("Add phrase")
-            }
-
-        }.padding()
     }
 }
 

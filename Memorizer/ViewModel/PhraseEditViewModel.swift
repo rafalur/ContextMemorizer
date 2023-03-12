@@ -90,6 +90,7 @@ class PhraseEditViewModel: ObservableObject {
         return phrasesRepo.add(phrase: phrase)
     }
 
+    // TODO: pass using Combine
     func add(context: Context) {
         if !context.sentence.isEmpty {
             addedContexts.append(context)
