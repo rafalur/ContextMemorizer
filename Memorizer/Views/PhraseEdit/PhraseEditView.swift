@@ -48,7 +48,8 @@ struct PhraseEditView: View {
                 .controlSize(.regular)
                 .buttonStyle(.borderedProminent)
             }
-        } .onChange(of: viewModel.done) { done in
+        }
+        .onChange(of: viewModel.done) { done in
             if done {
                 presentationMode.wrappedValue.dismiss()
             }
@@ -66,10 +67,18 @@ struct PhraseEditView: View {
     }
 
     var addedContexts: some View {
-        ForEach(viewModel.addedContexts) {
-            ContextRowView(context: $0)
+        ForEach(viewModel.addedContexts) { context in
+            ContextRowView(context: context, removable: true)
+                .onRemove {
+                    withAnimation(.easeIn) {
+                        viewModel.removeContext.send(context)
+                    }
+                }
                 .padding(.top, 5)
-                .transition(AnyTransition.scale.animation(.spring()))
+                .transition(AnyTransition.asymmetric(
+                    insertion: .move(edge: .trailing),
+                    removal: .move(edge: .leading)
+                ).combined(with: .opacity))
         }
     }
 

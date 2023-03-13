@@ -8,15 +8,32 @@ import SwiftUI
 extension PhraseEditView {
     struct ContextRowView: View {
         let context: Context
+        let removable: Bool
+        var onRemove: (()->())? = nil
+        
         var body: some View {
             HStack {
                 Spacer()
                 Text(context.sentence)
                 Spacer()
+                if removable {
+                    Button {
+                        onRemove?()
+                    } label: {
+                        Image(systemName: "xmark.bin.fill")
+                    }
+                    .padding(15)
+                }
             }
             .padding(.vertical)
             .background(Color.gray.opacity(0.1))
             .cornerRadius(10)
+        }
+        
+        func onRemove(_ action: @escaping (()->()) ) -> some View {
+            var mutableSelf = self
+            mutableSelf.onRemove = action
+            return mutableSelf
         }
     }
 

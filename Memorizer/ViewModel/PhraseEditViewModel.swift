@@ -16,7 +16,8 @@ class PhraseEditViewModel: ObservableObject {
 
     // Input
     let save = PassthroughSubject<Void, Never>()
-
+    let removeContext = PassthroughSubject<Context, Never>()
+    
     @Published var text: String = ""
     @Published var addedContexts: [Context] = []
 
@@ -37,6 +38,10 @@ class PhraseEditViewModel: ObservableObject {
             text = phraseToEdit.text
             addedContexts = phraseToEdit.contexts
         }
+        
+        removeContext.sink { [weak self] context in
+            self?.remove(context: context)
+        }.store(in: &cancellables)
 
         let phraseToSave = Publishers.CombineLatest($text, $addedContexts)
             .map { components -> Phrase? in
@@ -94,6 +99,12 @@ class PhraseEditViewModel: ObservableObject {
     func add(context: Context) {
         if !context.sentence.isEmpty {
             addedContexts.append(context)
+        }
+    }
+    
+    private func remove(context: Context) {
+        if let index = addedContexts.firstIndex(of: context) {
+            addedContexts.remove(at: index)
         }
     }
 }
