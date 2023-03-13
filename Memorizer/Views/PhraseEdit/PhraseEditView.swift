@@ -38,13 +38,13 @@ struct PhraseEditView: View {
                 Button {
                     viewModel.save.send()
                         } label: {
-                            if viewModel.isSaving {
+                            if viewModel.savingInProgress {
                                 ProgressView()
                             } else {
                                 Text("Save")
                             }
                         }
-                .disabled(viewModel.isSaving)
+                .disabled(!viewModel.saveAllowed)
                 .controlSize(.regular)
                 .buttonStyle(.borderedProminent)
             }
@@ -85,7 +85,7 @@ struct PhraseEditView: View {
     var addContextView: some View {
         AddContextView(onSaved: { context in
             withAnimation {
-                viewModel.add(context: context)
+                viewModel.addContext.send(context)
                 isAdding = false
             }
         })

@@ -16,6 +16,10 @@ struct Phrase: Identifiable, Equatable, Hashable {
         self.contexts = contexts
         self.familiarity = familiarity
     }
+    
+    func sameValue(as other: Phrase) -> Bool {
+        return other.text == text && other.contexts == contexts && other.familiarity == familiarity
+    }
 }
 
 struct Context: Identifiable, Equatable, Hashable {
