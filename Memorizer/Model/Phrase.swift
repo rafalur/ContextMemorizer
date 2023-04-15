@@ -24,5 +24,5 @@ struct Phrase: Identifiable, Equatable, Hashable {
 
 struct Context: Identifiable, Equatable, Hashable {
     let id: UUID = .init()
-    let sentence: String
+    var sentence: String
 }

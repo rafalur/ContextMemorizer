@@ -18,41 +18,36 @@ struct PhraseEditView: View {
     @State private var isAdding = false
 
     var body: some View {
-        return VStack {
+        VStack {
             phraseTextEdit
-
-            Group {
-                addedContexts
-                if isAdding {
-                    addContextView
-                } else {
-                    addContextButton
-                }
-            }.transition(AnyTransition.scale.animation(.spring()))
-
+            contextViewsGroup
+            .transition(AnyTransition.scale.animation(.spring()))
+            
             Spacer()
         }
         .padding()
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button {
-                    viewModel.save.send()
-                        } label: {
-                            if viewModel.savingInProgress {
-                                ProgressView()
-                            } else {
-                                Text("Save")
-                            }
-                        }
-                .disabled(!viewModel.saveAllowed)
-                .controlSize(.regular)
-                .buttonStyle(.borderedProminent)
-            }
-        }
+        .toolbar { toolbarContent }
         .onChange(of: viewModel.done) { done in
             if done {
                 presentationMode.wrappedValue.dismiss()
             }
+        }
+    }
+    
+    var toolbarContent: some ToolbarContent {
+        ToolbarItemGroup(placement: .navigationBarTrailing) {
+            Button {
+                viewModel.save.send()
+                    } label: {
+                        if viewModel.savingInProgress {
+                            ProgressView()
+                        } else {
+                            Text("Save")
+                        }
+                    }
+            .disabled(!viewModel.saveAllowed)
+            .controlSize(.regular)
+            .buttonStyle(.borderedProminent)
         }
     }
 
@@ -65,13 +60,25 @@ struct PhraseEditView: View {
                     .stroke(textFieldFrameColor, lineWidth: 1)
             ).padding(.top, 20)
     }
+    
+    var contextViewsGroup: some View {
+        Group {
+            contexts
+            if isAdding {
+                addContextView
+            } else {
+                addContextButton
+            }
+        }
+    }
 
-    var addedContexts: some View {
-        ForEach(viewModel.addedContexts) { context in
-            ContextRowView(context: context, removable: true)
+
+    var contexts: some View {
+        ForEach($viewModel.addedContexts) { context in
+            ContextRowView(context: context, editable: true)
                 .onRemove {
                     withAnimation(.easeIn) {
-                        viewModel.removeContext.send(context)
+                        viewModel.removeContext.send(context.wrappedValue)
                     }
                 }
                 .padding(.top, 5)
@@ -104,7 +111,7 @@ struct PhraseEditView: View {
 struct PhraseEditView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            PhraseEditView(dependencies: .mock)
+            PhraseEditView(dependencies: .mock, phraseToEdit: .init(text: "Test", contexts: [.init(sentence: "Seneaa")], familiarity: 3))
         }
     }
 }

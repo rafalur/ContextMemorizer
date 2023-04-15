@@ -7,16 +7,16 @@ import SwiftUI
 
 extension PhraseEditView {
     struct ContextRowView: View {
-        let context: Context
-        let removable: Bool
+        let context: Binding<Context>
+        let editable: Bool
         var onRemove: (()->())? = nil
         
         var body: some View {
             HStack {
                 Spacer()
-                Text(context.sentence)
+                TextField("aaa", text: context.sentence)
                 Spacer()
-                if removable {
+                if editable {
                     Button {
                         onRemove?()
                     } label: {
