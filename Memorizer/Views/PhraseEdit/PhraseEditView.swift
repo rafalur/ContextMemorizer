@@ -26,6 +26,7 @@ struct PhraseEditView: View {
             Spacer()
         }
         .padding()
+        .padding(.top, 20)
         .toolbar { toolbarContent }
         .onChange(of: viewModel.done) { done in
             if done {
@@ -58,7 +59,7 @@ struct PhraseEditView: View {
             .overlay(
                 RoundedRectangle(cornerRadius: 10.0)
                     .stroke(textFieldFrameColor, lineWidth: 1)
-            ).padding(.top, 20)
+            )
     }
     
     var contextViewsGroup: some View {
@@ -66,12 +67,13 @@ struct PhraseEditView: View {
             contexts
             if isAdding {
                 addContextView
+                    .padding(.top, 20)
             } else {
                 addContextButton
+                    .padding(.top, 30)
             }
         }
     }
-
 
     var contexts: some View {
         ForEach($viewModel.addedContexts) { context in
@@ -96,7 +98,6 @@ struct PhraseEditView: View {
                 isAdding = false
             }
         })
-        .padding(.top, 20)
     }
 
     var addContextButton: some View {
@@ -104,7 +105,7 @@ struct PhraseEditView: View {
             isAdding.toggle()
         } label: {
             Label("Add next context", systemImage: "plus.app")
-        }.padding(.top, 30)
+        }
     }
 }
 

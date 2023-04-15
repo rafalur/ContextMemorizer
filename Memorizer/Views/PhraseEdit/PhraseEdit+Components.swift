@@ -14,7 +14,7 @@ extension PhraseEditView {
         var body: some View {
             HStack {
                 Spacer()
-                TextField("aaa", text: context.sentence)
+                TextField("", text: context.sentence)
                 Spacer()
                 if editable {
                     Button {
