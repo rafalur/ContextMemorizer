@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B527FBA429EC616D0016EFE4 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B527FBA329EC616D0016EFE4 /* Realm */; };
+		B527FBA629EC616D0016EFE4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B527FBA529EC616D0016EFE4 /* RealmSwift */; };
+		B527FBA829EC61DF0016EFE4 /* RealmPhrasesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527FBA729EC61DF0016EFE4 /* RealmPhrasesRepository.swift */; };
+		B527FBAE29EFD47D0016EFE4 /* ContextObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527FBAD29EFD47D0016EFE4 /* ContextObject.swift */; };
+		B527FBB029EFD4A10016EFE4 /* PhraseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527FBAF29EFD4A10016EFE4 /* PhraseObject.swift */; };
 		B5B3DE4F2964240D005D37DA /* MemorizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3DE4E2964240D005D37DA /* MemorizerApp.swift */; };
 		B5B3DE512964240D005D37DA /* PhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3DE502964240D005D37DA /* PhraseView.swift */; };
 		B5B3DE5329642410005D37DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B3DE5229642410005D37DA /* Assets.xcassets */; };
@@ -49,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B527FBA729EC61DF0016EFE4 /* RealmPhrasesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhrasesRepository.swift; sourceTree = "<group>"; };
+		B527FBAD29EFD47D0016EFE4 /* ContextObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextObject.swift; sourceTree = "<group>"; };
+		B527FBAF29EFD4A10016EFE4 /* PhraseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseObject.swift; sourceTree = "<group>"; };
 		B5B3DE4B2964240D005D37DA /* Memorizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B3DE4E2964240D005D37DA /* MemorizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizerApp.swift; sourceTree = "<group>"; };
 		B5B3DE502964240D005D37DA /* PhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseView.swift; sourceTree = "<group>"; };
@@ -81,6 +89,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B527FBA629EC616D0016EFE4 /* RealmSwift in Frameworks */,
+				B527FBA429EC616D0016EFE4 /* Realm in Frameworks */,
 				B5C5856729BCF2030049D4DF /* CombineExt in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +112,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B527FBAB29EFD43E0016EFE4 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				B527FBAC29EFD46E0016EFE4 /* Objects */,
+				B527FBA729EC61DF0016EFE4 /* RealmPhrasesRepository.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		B527FBAC29EFD46E0016EFE4 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				B527FBAD29EFD47D0016EFE4 /* ContextObject.swift */,
+				B527FBAF29EFD4A10016EFE4 /* PhraseObject.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
 		B5B3DE422964240D005D37DA = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +195,7 @@
 		B5B3DE7F296ED65C005D37DA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B527FBAB29EFD43E0016EFE4 /* Realm */,
 				B5B3DE80296ED67B005D37DA /* Phrase.swift */,
 				B5C5855F29BCAAA70049D4DF /* PhrasesRepository.swift */,
 				B5C5856329BCD0300049D4DF /* MockedPhrasesRepository.swift */,
@@ -239,6 +268,8 @@
 			name = Memorizer;
 			packageProductDependencies = (
 				B5C5856629BCF2030049D4DF /* CombineExt */,
+				B527FBA329EC616D0016EFE4 /* Realm */,
+				B527FBA529EC616D0016EFE4 /* RealmSwift */,
 			);
 			productName = Memorizer;
 			productReference = B5B3DE4B2964240D005D37DA /* Memorizer.app */;
@@ -314,6 +345,7 @@
 			mainGroup = B5B3DE422964240D005D37DA;
 			packageReferences = (
 				B5C5856529BCF2030049D4DF /* XCRemoteSwiftPackageReference "CombineExt" */,
+				B527FBA229EC616D0016EFE4 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = B5B3DE4C2964240D005D37DA /* Products */;
 			projectDirPath = "";
@@ -368,9 +400,12 @@
 				B5C5855C29BBBB080049D4DF /* PhraseCard.swift in Sources */,
 				B5C5856929BD2EBE0049D4DF /* NavigationDestinations.swift in Sources */,
 				B5C5856429BCD0300049D4DF /* MockedPhrasesRepository.swift in Sources */,
+				B527FBA829EC61DF0016EFE4 /* RealmPhrasesRepository.swift in Sources */,
+				B527FBAE29EFD47D0016EFE4 /* ContextObject.swift in Sources */,
 				B5C5856029BCAAA70049D4DF /* PhrasesRepository.swift in Sources */,
 				B5C5856B29BDE6D10049D4DF /* PhraseDetailsViewModel.swift in Sources */,
 				B5B3DE7E296ED5CA005D37DA /* DeckView.swift in Sources */,
+				B527FBB029EFD4A10016EFE4 /* PhraseObject.swift in Sources */,
 				B5C5855929BBBAAB0049D4DF /* StarsView.swift in Sources */,
 				B5B3DE8A29703938005D37DA /* PhraseEdit+Components.swift in Sources */,
 			);
@@ -726,6 +761,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B527FBA229EC616D0016EFE4 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.38.0;
+			};
+		};
 		B5C5856529BCF2030049D4DF /* XCRemoteSwiftPackageReference "CombineExt" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CombineCommunity/CombineExt.git";
@@ -737,6 +780,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B527FBA329EC616D0016EFE4 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B527FBA229EC616D0016EFE4 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		B527FBA529EC616D0016EFE4 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B527FBA229EC616D0016EFE4 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		B5C5856629BCF2030049D4DF /* CombineExt */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B5C5856529BCF2030049D4DF /* XCRemoteSwiftPackageReference "CombineExt" */;

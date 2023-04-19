@@ -55,7 +55,6 @@ class PhraseEditViewModel: ObservableObject {
             self?.add(context: context)
         }.store(in: &cancellables)
         
-        
         // Phrase saving
         let phraseToSave = Publishers.CombineLatest($text, $addedContexts)
             .map { [phraseToEdit] components -> Phrase? in

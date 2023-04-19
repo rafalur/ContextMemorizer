@@ -10,10 +10,9 @@ class Coordinator: ObservableObject {
 
 @main
 struct MemorizerApp: App {
-    let dependencies: Dependencies = .mock
+    let dependencies: Dependencies = .init(phrasesRepo: RealmPhrasesRepository())
     
     @StateObject var coordinator = Coordinator()
-
 
     var body: some Scene {
         WindowGroup {
@@ -33,7 +32,6 @@ struct MemorizerApp: App {
                                     .environmentObject(coordinator)
                         }
                     }
-     
             }
             .environmentObject(coordinator)
         }
