@@ -39,20 +39,18 @@ class RealmPhrasesRepository: PhrasesRepository {
     }
     
     private func save(phrase: Phrase, wasExisting: Bool) -> AnyPublisher<Void, Error> {
-        do {
+        Future { promise in
             let phraseToWrite = PhraseObject(phrase: phrase)
-
-            try realm.write {
-                realm.add(phraseToWrite, update: wasExisting ? .modified : .error)
+            
+            let result = Result {
+                try self.realm.write {
+                    self.realm.add(phraseToWrite, update: wasExisting ? .modified : .error)
+                }
             }
-        
-            return Just(())
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        } catch {
-            return Fail(error: error)
-                .eraseToAnyPublisher()
+            
+            promise(result)
         }
+        .eraseToAnyPublisher()
     }
     
     private func handlePhrasesUpdated() {

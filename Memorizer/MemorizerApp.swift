@@ -10,7 +10,7 @@ class Coordinator: ObservableObject {
 
 @main
 struct MemorizerApp: App {
-    let dependencies: Dependencies = .init(phrasesRepo: RealmPhrasesRepository())
+    let dependencies: Dependencies = .prod
     
     @StateObject var coordinator = Coordinator()
 

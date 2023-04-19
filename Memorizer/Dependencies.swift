@@ -15,6 +15,10 @@ class Dependencies: ObservableObject {
     static var mock: Dependencies {
         .init(phrasesRepo: MockedPhrasesRepo())
     }
+    
+    static var prod: Dependencies {
+        .init(phrasesRepo: RealmPhrasesRepository())
+    }
 }
 
 
