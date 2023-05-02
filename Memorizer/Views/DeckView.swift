@@ -38,6 +38,16 @@ struct DeckView: View {
             .controlSize(.regular)
             .buttonStyle(.borderedProminent)
         }
+        
+        ToolbarItemGroup(placement: .navigationBarLeading) {
+            Button {
+                coordinator.path.append(NavigationDestinations.learn)
+            } label: {
+                Text("LEARN")
+            }
+            .controlSize(.regular)
+            .buttonStyle(.borderedProminent)
+        }
     }
 
     var phrasesList: some View {

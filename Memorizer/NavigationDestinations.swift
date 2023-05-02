@@ -8,4 +8,5 @@ import Foundation
 enum NavigationDestinations: Hashable {
     case phraseDetails(phrase: Phrase)
     case phraseEdit(phrase: Phrase?)
+    case learn
 }

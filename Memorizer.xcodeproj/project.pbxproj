@@ -12,6 +12,7 @@
 		B527FBA829EC61DF0016EFE4 /* RealmPhrasesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527FBA729EC61DF0016EFE4 /* RealmPhrasesRepository.swift */; };
 		B527FBAE29EFD47D0016EFE4 /* ContextObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527FBAD29EFD47D0016EFE4 /* ContextObject.swift */; };
 		B527FBB029EFD4A10016EFE4 /* PhraseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527FBAF29EFD4A10016EFE4 /* PhraseObject.swift */; };
+		B5AAFCF62A011851004862EA /* LessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AAFCF52A011851004862EA /* LessonView.swift */; };
 		B5B3DE4F2964240D005D37DA /* MemorizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3DE4E2964240D005D37DA /* MemorizerApp.swift */; };
 		B5B3DE512964240D005D37DA /* PhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3DE502964240D005D37DA /* PhraseView.swift */; };
 		B5B3DE5329642410005D37DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B3DE5229642410005D37DA /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		B527FBA729EC61DF0016EFE4 /* RealmPhrasesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhrasesRepository.swift; sourceTree = "<group>"; };
 		B527FBAD29EFD47D0016EFE4 /* ContextObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextObject.swift; sourceTree = "<group>"; };
 		B527FBAF29EFD4A10016EFE4 /* PhraseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseObject.swift; sourceTree = "<group>"; };
+		B5AAFCF52A011851004862EA /* LessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonView.swift; sourceTree = "<group>"; };
 		B5B3DE4B2964240D005D37DA /* Memorizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B3DE4E2964240D005D37DA /* MemorizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizerApp.swift; sourceTree = "<group>"; };
 		B5B3DE502964240D005D37DA /* PhraseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseView.swift; sourceTree = "<group>"; };
@@ -128,6 +130,14 @@
 				B527FBAF29EFD4A10016EFE4 /* PhraseObject.swift */,
 			);
 			path = Objects;
+			sourceTree = "<group>";
+		};
+		B5AAFCF42A01183B004862EA /* Lesson */ = {
+			isa = PBXGroup;
+			children = (
+				B5AAFCF52A011851004862EA /* LessonView.swift */,
+			);
+			path = Lesson;
 			sourceTree = "<group>";
 		};
 		B5B3DE422964240D005D37DA = {
@@ -216,6 +226,7 @@
 		B5B3DE85297038A7005D37DA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B5AAFCF42A01183B004862EA /* Lesson */,
 				B5C5855A29BBBAE00049D4DF /* PhraseDetails */,
 				B5C5855729BBBA960049D4DF /* Common */,
 				B5B3DE88297038FC005D37DA /* PhraseEdit */,
@@ -391,6 +402,7 @@
 			files = (
 				B5B3DE512964240D005D37DA /* PhraseView.swift in Sources */,
 				B5B3DE8C29703995005D37DA /* PhraseEditViewModel.swift in Sources */,
+				B5AAFCF62A011851004862EA /* LessonView.swift in Sources */,
 				B5B3DE83296F0A88005D37DA /* PhraseEditView.swift in Sources */,
 				B5C5856229BCAAC00049D4DF /* MockData.swift in Sources */,
 				B5B3DE4F2964240D005D37DA /* MemorizerApp.swift in Sources */,

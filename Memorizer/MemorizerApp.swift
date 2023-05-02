@@ -30,6 +30,8 @@ struct MemorizerApp: App {
                                 PhraseEditView(dependencies: dependencies, phraseToEdit: phrase)
                                     .environmentObject(dependencies)
                                     .environmentObject(coordinator)
+                            case .learn:
+                                LessonView(dependencies: dependencies)
                         }
                     }
             }
