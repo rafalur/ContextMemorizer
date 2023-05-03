@@ -31,7 +31,7 @@ struct MemorizerApp: App {
                                     .environmentObject(dependencies)
                                     .environmentObject(coordinator)
                             case .learn:
-                                LessonView(dependencies: dependencies)
+                            LessonView(dependencies: dependencies)
                         }
                     }
             }
