@@ -10,7 +10,7 @@ class Coordinator: ObservableObject {
 
 @main
 struct MemorizerApp: App {
-    let dependencies: Dependencies = .prod
+    let dependencies: Dependencies = .mock
     
     @StateObject var coordinator = Coordinator()
 

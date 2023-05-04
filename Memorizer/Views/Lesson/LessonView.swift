@@ -18,8 +18,9 @@ struct LessonView: View {
 
     var body: some View {
         VStack {
-            if let context = viewModel.context {
+            if let context = viewModel.context, let bindingToCurrentContext = Binding<Context>($viewModel.context)  {
                 SentenceView(text: context.sentence).padding()
+                StarsView(value: bindingToCurrentContext.familiarity, size: .large, editable: true)
             }
             Spacer()
             Button("Next") {
@@ -43,8 +44,6 @@ struct SentenceView: View {
 
 struct LessonViewPreviews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            PhraseView(dependencies: .mock, phrase: testPhrases[0])
-        }
+        LessonView(dependencies: .mock)
     }
 }

@@ -51,7 +51,7 @@ struct ContextItemView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(context.sentence)
-            StarsView(value: 3, size: .large)
+            StarsView(value: .constant(3), size: .medium, editable: false)
         }
     }
 }

@@ -25,9 +25,11 @@ struct Phrase: Identifiable, Equatable, Hashable {
 struct Context: Identifiable, Equatable, Hashable {
     let id: UUID
     var sentence: String
+    var familiarity: Int
     
-    init(id: UUID = .init(), sentence: String) {
+    init(id: UUID = .init(), sentence: String, familiarity: Int = 0) {
         self.id = id
         self.sentence = sentence
+        self.familiarity = familiarity
     }
 }
