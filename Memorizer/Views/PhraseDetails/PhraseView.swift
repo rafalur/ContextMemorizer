@@ -56,7 +56,7 @@ struct ContextItemView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct PhraseView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             PhraseView(dependencies: .mock, phrase: testPhrases[0])
