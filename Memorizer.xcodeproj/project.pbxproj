@@ -12,6 +12,7 @@
 		B527FBA829EC61DF0016EFE4 /* RealmPhrasesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527FBA729EC61DF0016EFE4 /* RealmPhrasesRepository.swift */; };
 		B527FBAE29EFD47D0016EFE4 /* ContextObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527FBAD29EFD47D0016EFE4 /* ContextObject.swift */; };
 		B527FBB029EFD4A10016EFE4 /* PhraseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527FBAF29EFD4A10016EFE4 /* PhraseObject.swift */; };
+		B53B9E322A0D6F06008E806A /* GradientColorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B9E312A0D6F06008E806A /* GradientColorInfo.swift */; };
 		B5AAFCF62A011851004862EA /* LessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AAFCF52A011851004862EA /* LessonView.swift */; };
 		B5AAFCF82A011B04004862EA /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AAFCF72A011B04004862EA /* LessonViewModel.swift */; };
 		B5B3DE4F2964240D005D37DA /* MemorizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3DE4E2964240D005D37DA /* MemorizerApp.swift */; };
@@ -59,6 +60,7 @@
 		B527FBA729EC61DF0016EFE4 /* RealmPhrasesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhrasesRepository.swift; sourceTree = "<group>"; };
 		B527FBAD29EFD47D0016EFE4 /* ContextObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextObject.swift; sourceTree = "<group>"; };
 		B527FBAF29EFD4A10016EFE4 /* PhraseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseObject.swift; sourceTree = "<group>"; };
+		B53B9E312A0D6F06008E806A /* GradientColorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColorInfo.swift; sourceTree = "<group>"; };
 		B5AAFCF52A011851004862EA /* LessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonView.swift; sourceTree = "<group>"; };
 		B5AAFCF72A011B04004862EA /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
 		B5B3DE4B2964240D005D37DA /* Memorizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +136,14 @@
 			path = Objects;
 			sourceTree = "<group>";
 		};
+		B53B9E302A0D6EEA008E806A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B53B9E312A0D6F06008E806A /* GradientColorInfo.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		B5AAFCF42A01183B004862EA /* Lesson */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +175,7 @@
 		B5B3DE4D2964240D005D37DA /* Memorizer */ = {
 			isa = PBXGroup;
 			children = (
+				B53B9E302A0D6EEA008E806A /* Utils */,
 				B5B3DE8429703899005D37DA /* ViewModel */,
 				B5B3DE7F296ED65C005D37DA /* Model */,
 				B5B3DE85297038A7005D37DA /* Views */,
@@ -416,6 +427,7 @@
 				B5C5856929BD2EBE0049D4DF /* NavigationDestinations.swift in Sources */,
 				B5AAFCF82A011B04004862EA /* LessonViewModel.swift in Sources */,
 				B5C5856429BCD0300049D4DF /* MockedPhrasesRepository.swift in Sources */,
+				B53B9E322A0D6F06008E806A /* GradientColorInfo.swift in Sources */,
 				B527FBA829EC61DF0016EFE4 /* RealmPhrasesRepository.swift in Sources */,
 				B527FBAE29EFD47D0016EFE4 /* ContextObject.swift in Sources */,
 				B5C5856029BCAAA70049D4DF /* PhrasesRepository.swift in Sources */,
