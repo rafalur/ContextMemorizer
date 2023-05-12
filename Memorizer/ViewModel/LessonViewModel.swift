@@ -51,10 +51,11 @@ class LessonViewModel: ObservableObject {
         let switchToNextContext = scorePublisher
             .delay(for: 1, scheduler: RunLoop.main)
         
-        switchToNextContext.map { _ in 0 }
+        switchToNextContext
+            .map { _ in 0 }
             .assign(to: &$currentScore)
         
-        let allScoresPerContext =  scorePublisher.withLatestFrom($context.compactMap{ $0 } ) { ($0, $1.id) }
+        let allScoresPerContext = scorePublisher.withLatestFrom($context.compactMap{ $0 } ) { ($0, $1.id) }
             .scan([ScoreForContextId]()) { return $0 + [$1] }
         
         save.withLatestFrom(allScoresPerContext)

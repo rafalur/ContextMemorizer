@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 protocol LearningSessionsRepository {
-    var sessionsPublisher: AnyPublisher<[LearningSession], Never> { get }
+    var allSessions: [LearningSession] { get }
     
     func add(session: LearningSession) -> AnyPublisher<Void, Error>
 }

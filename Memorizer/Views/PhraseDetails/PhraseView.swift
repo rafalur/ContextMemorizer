@@ -11,16 +11,16 @@ struct PhraseView: View {
     @StateObject var viewModel: PhraseDetailsViewModel
     
     init(dependencies: Dependencies, phrase: Phrase) {
-        let viewModel = PhraseDetailsViewModel(phrase: phrase, phrasesRepo: dependencies.phrasesRepo)
+        let viewModel = PhraseDetailsViewModel(phrase: phrase, phrasesRepo: dependencies.phrasesRepo, scoresProvider: dependencies.scoresProvider)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
         VStack {
-            PhraseCard(text: viewModel.phrase.text).padding(.vertical, 30)
+            PhraseCard(text: viewModel.phraseText).padding(.vertical, 30)
             List {
-                ForEach(viewModel.phrase.contexts) {
-                    ContextItemView(context: $0)
+                ForEach(viewModel.contextItems) {
+                    ContextItemView(contextItem: $0)
                 }
             }
         }
@@ -46,12 +46,12 @@ struct PhraseView: View {
 }
 
 struct ContextItemView: View {
-    let context: Context
+    let contextItem: ContextItem
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(context.sentence)
-            StarsView(value: .constant(3), size: .medium, editable: false)
+            Text(contextItem.contextText)
+            StarsView(value: .constant(contextItem.score), size: .medium, editable: false)
         }
     }
 }

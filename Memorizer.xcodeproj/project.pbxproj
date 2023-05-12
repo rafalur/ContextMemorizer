@@ -18,6 +18,8 @@
 		B53B9E382A0E4247008E806A /* LearningSessionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B9E372A0E4247008E806A /* LearningSessionsRepository.swift */; };
 		B53B9E3D2A0E429D008E806A /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B9E3C2A0E429D008E806A /* Context.swift */; };
 		B53B9E3F2A0E434C008E806A /* InMemoryLearningSessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B9E3E2A0E434C008E806A /* InMemoryLearningSessionRepository.swift */; };
+		B53B9E422A0E6A04008E806A /* ScoresProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B9E412A0E6A04008E806A /* ScoresProvider.swift */; };
+		B53B9E442A0E6A41008E806A /* SessionsBasedScoresProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B9E432A0E6A41008E806A /* SessionsBasedScoresProvider.swift */; };
 		B5AAFCF62A011851004862EA /* LessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AAFCF52A011851004862EA /* LessonView.swift */; };
 		B5AAFCF82A011B04004862EA /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AAFCF72A011B04004862EA /* LessonViewModel.swift */; };
 		B5B3DE4F2964240D005D37DA /* MemorizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3DE4E2964240D005D37DA /* MemorizerApp.swift */; };
@@ -71,6 +73,8 @@
 		B53B9E372A0E4247008E806A /* LearningSessionsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningSessionsRepository.swift; sourceTree = "<group>"; };
 		B53B9E3C2A0E429D008E806A /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		B53B9E3E2A0E434C008E806A /* InMemoryLearningSessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryLearningSessionRepository.swift; sourceTree = "<group>"; };
+		B53B9E412A0E6A04008E806A /* ScoresProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresProvider.swift; sourceTree = "<group>"; };
+		B53B9E432A0E6A41008E806A /* SessionsBasedScoresProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsBasedScoresProvider.swift; sourceTree = "<group>"; };
 		B5AAFCF52A011851004862EA /* LessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonView.swift; sourceTree = "<group>"; };
 		B5AAFCF72A011B04004862EA /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
 		B5B3DE4B2964240D005D37DA /* Memorizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +185,15 @@
 			path = Phrases;
 			sourceTree = "<group>";
 		};
+		B53B9E402A0E69F1008E806A /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				B53B9E412A0E6A04008E806A /* ScoresProvider.swift */,
+				B53B9E432A0E6A41008E806A /* SessionsBasedScoresProvider.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
 		B5AAFCF42A01183B004862EA /* Lesson */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +281,7 @@
 		B5B3DE8429703899005D37DA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B53B9E402A0E69F1008E806A /* Workers */,
 				B5B3DE86297038D2005D37DA /* DeckViewModel.swift */,
 				B5B3DE8B29703995005D37DA /* PhraseEditViewModel.swift */,
 				B5C5856A29BDE6D10049D4DF /* PhraseDetailsViewModel.swift */,
@@ -454,6 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5B3DE512964240D005D37DA /* PhraseView.swift in Sources */,
+				B53B9E422A0E6A04008E806A /* ScoresProvider.swift in Sources */,
 				B5B3DE8C29703995005D37DA /* PhraseEditViewModel.swift in Sources */,
 				B5AAFCF62A011851004862EA /* LessonView.swift in Sources */,
 				B53B9E3D2A0E429D008E806A /* Context.swift in Sources */,
@@ -468,6 +483,7 @@
 				B5C5856929BD2EBE0049D4DF /* NavigationDestinations.swift in Sources */,
 				B5AAFCF82A011B04004862EA /* LessonViewModel.swift in Sources */,
 				B53B9E342A0E40B5008E806A /* LearningSession.swift in Sources */,
+				B53B9E442A0E6A41008E806A /* SessionsBasedScoresProvider.swift in Sources */,
 				B5C5856429BCD0300049D4DF /* MockedPhrasesRepository.swift in Sources */,
 				B53B9E322A0D6F06008E806A /* GradientColorInfo.swift in Sources */,
 				B527FBA829EC61DF0016EFE4 /* RealmPhrasesRepository.swift in Sources */,

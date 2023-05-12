@@ -11,13 +11,11 @@ import Combine
 class InMemoryLearningSessionRepository: LearningSessionsRepository {
     @Published var sessions: [LearningSession] = [LearningSession]()
     
-    var sessionsPublisher: AnyPublisher<[LearningSession], Never> {
-        $sessions.eraseToAnyPublisher()
+    var allSessions: [LearningSession] {
+        sessions
     }
-    
 
     func add(session: LearningSession) -> AnyPublisher<Void, Error> {
-        
         print("add session: \(session)")
         sessions.append(session)
 
