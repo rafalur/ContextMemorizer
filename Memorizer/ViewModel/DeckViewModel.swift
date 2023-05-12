@@ -43,9 +43,7 @@ class DeckViewModel: ObservableObject {
 
 fileprivate extension Array where Element == Phrase {
     func sortByFamiliarity(ascending: Bool) -> [Phrase] {
-        if ascending {
-            return sorted { $0.familiarity > $1.familiarity }
-        }
-        return sorted { $0.familiarity < $1.familiarity }
+        // TODO:
+        return self
     }
 }

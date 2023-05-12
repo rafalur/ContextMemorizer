@@ -22,7 +22,7 @@ struct LessonView: View {
                 SentenceView(context: context)
                     .padding()
 
-                StarsView(value: bindingToCurrentContext.familiarity, size: .large, editable: true)
+                StarsView(value: .constant(1), size: .large, editable: true)
             }
             Spacer()
             Button("Next") {

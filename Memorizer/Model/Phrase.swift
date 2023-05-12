@@ -8,28 +8,24 @@ struct Phrase: Identifiable, Equatable, Hashable {
     let id: UUID
     let text: String
     let contexts: [Context]
-    let familiarity: Int
     
-    init(id: UUID = .init(), text: String, contexts: [Context], familiarity: Int) {
+    init(id: UUID = .init(), text: String, contexts: [Context]) {
         self.id = id
         self.text = text
         self.contexts = contexts
-        self.familiarity = familiarity
     }
     
     func sameValue(as other: Phrase) -> Bool {
-        return other.text == text && other.contexts == contexts && other.familiarity == familiarity
+        return other.text == text && other.contexts == contexts
     }
 }
 
 struct Context: Identifiable, Equatable, Hashable {
     let id: UUID
     var sentence: String
-    var familiarity: Int
     
-    init(id: UUID = .init(), sentence: String, familiarity: Int = 0) {
+    init(id: UUID = .init(), sentence: String) {
         self.id = id
         self.sentence = sentence
-        self.familiarity = familiarity
     }
 }

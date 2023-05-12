@@ -58,7 +58,7 @@ struct DeckView: View {
                         HStack {
                             Text(phrase.text)
                             Spacer()
-                            StarsView(value: .constant(phrase.familiarity), size: .small, editable: false)
+                            StarsView(value: .constant(1), size: .small, editable: false)
                         }
                     }
                     .foregroundColor(.white)

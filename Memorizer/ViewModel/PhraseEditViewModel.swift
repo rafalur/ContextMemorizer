@@ -57,9 +57,9 @@ class PhraseEditViewModel: ObservableObject {
         
         // Phrase saving
         let phraseToSave = Publishers.CombineLatest($text, $addedContexts)
-            .map { [phraseToEdit] components -> Phrase? in
+            .map { components -> Phrase? in
                 guard !components.0.isEmpty else { return nil }
-                return Phrase(text: components.0, contexts: components.1, familiarity: phraseToEdit?.familiarity ?? 0)
+                return Phrase(text: components.0, contexts: components.1)
             }
         
         phraseToSave.map { [phraseToEdit] in
@@ -118,7 +118,7 @@ class PhraseEditViewModel: ObservableObject {
 
     private func addOrUpdate(phrase: Phrase) -> AnyPublisher<Void, Error> {
         if let phraseToEdit = phraseToEdit {
-            let newPhrase = Phrase(id: phraseToEdit.id, text: phrase.text, contexts: phrase.contexts, familiarity: phraseToEdit.familiarity)
+            let newPhrase = Phrase(id: phraseToEdit.id, text: phrase.text, contexts: phrase.contexts)
             return phrasesRepo.update(phrase: newPhrase)
         }
         return phrasesRepo.add(phrase: phrase)

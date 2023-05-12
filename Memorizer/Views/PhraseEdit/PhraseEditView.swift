@@ -112,7 +112,7 @@ struct PhraseEditView: View {
 struct PhraseEditView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            PhraseEditView(dependencies: .mock, phraseToEdit: .init(text: "Test", contexts: [.init(sentence: "Seneaa")], familiarity: 3))
+            PhraseEditView(dependencies: .mock, phraseToEdit: .init(text: "Test", contexts: [.init(sentence: "Seneaa")]))
         }
     }
 }
