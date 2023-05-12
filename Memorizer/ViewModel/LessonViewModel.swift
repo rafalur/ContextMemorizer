@@ -11,21 +11,25 @@ import Combine
 import CombineExt
 import Foundation
 
-
+fileprivate typealias ScoreForContextId = (UInt, UUID)
 
 class LessonViewModel: ObservableObject {
     private let phrasesRepo: PhrasesRepository
+    private let sessionsRepo: LearningSessionsRepository
 
     // Input
-    let scoreCurrentSentence = PassthroughSubject<UInt8, Never>()
+    let save = PassthroughSubject<Void, Never>()
     
     @Published var context: Context?
-    
+    @Published var currentScore: UInt = 0
+    @Published var done: Bool = false
+
     private var contexts: [Context] = []
     private var cancellables = [AnyCancellable]()
 
-    init(phrasesRepo: PhrasesRepository) {
+    init(phrasesRepo: PhrasesRepository, sessionsRepo: LearningSessionsRepository) {
         self.phrasesRepo = phrasesRepo
+        self.sessionsRepo = sessionsRepo
         
         phrasesRepo.phrasesPublisher.first()
             .sink { [weak self] phrases in
@@ -39,7 +43,32 @@ class LessonViewModel: ObservableObject {
     }
     
     private func setupBindings() {
-        scoreCurrentSentence.sink{ [weak self] _ in
+        
+        let scorePublisher = $currentScore
+            .removeDuplicates()
+            .filter { $0 > 0 }
+        
+        let switchToNextContext = scorePublisher
+            .delay(for: 1, scheduler: RunLoop.main)
+        
+        switchToNextContext.map { _ in 0 }
+            .assign(to: &$currentScore)
+        
+        let allScoresPerContext =  scorePublisher.withLatestFrom($context.compactMap{ $0 } ) { ($0, $1.id) }
+            .scan([ScoreForContextId]()) { return $0 + [$1] }
+        
+        save.withLatestFrom(allScoresPerContext)
+            .compactMap { [weak self] scores in self?.session(fromScoresPerId: scores) }
+            .flatMap { [weak self] session in
+                self?.sessionsRepo.add(session: session) ?? Empty<Void, Error>(completeImmediately: true).eraseToAnyPublisher()
+            }
+            .map { _ in true }
+            .catch { _ in
+                return Just(true)
+            }
+            .assign(to: &$done)
+
+        switchToNextContext.sink{ [weak self] _ in
             guard let self = self else { return }
             let indexOfCurrentContext = self.contexts.firstIndex { $0.id == self.context?.id }
             guard let indexOfCurrentContext = indexOfCurrentContext else { return }
@@ -48,5 +77,10 @@ class LessonViewModel: ObservableObject {
             
         }
         .store(in: &cancellables)
+    }
+    
+    private func session(fromScoresPerId scores: [ScoreForContextId]) -> LearningSession {
+        let revisions = scores.map { ContextRevision(contextId: $0.1, score: $0.0) }
+        return .init(startDate: Date(), contextRevisions: revisions)
     }
 }

@@ -5,28 +5,36 @@
 import SwiftUI
 
 struct LessonView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     @EnvironmentObject var dependencies: Dependencies
     @EnvironmentObject var coordinator: Coordinator
 
     @StateObject var viewModel: LessonViewModel
 
+    @State var currentSentenceScore: UInt = 0
     
     init(dependencies: Dependencies) {
-        let viewModel = LessonViewModel(phrasesRepo: dependencies.phrasesRepo)
+        let viewModel = LessonViewModel(phrasesRepo: dependencies.phrasesRepo, sessionsRepo: dependencies.sessionsRepo)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
         VStack {
-            if let context = viewModel.context, let bindingToCurrentContext = Binding<Context>($viewModel.context)  {
+            if let context = viewModel.context {
                 SentenceView(context: context)
                     .padding()
 
-                StarsView(value: .constant(1), size: .large, editable: true)
+                StarsView(value: $viewModel.currentScore, size: .large, editable: true)
             }
             Spacer()
-            Button("Next") {
-                viewModel.scoreCurrentSentence.send(1)
+            Button("DONE") {
+                viewModel.save.send(())
+            }
+        }
+        .onChange(of: viewModel.done) { done in
+            if done {
+                presentationMode.wrappedValue.dismiss()
             }
         }
     }

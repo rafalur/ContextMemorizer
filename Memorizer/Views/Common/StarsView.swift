@@ -12,7 +12,7 @@ struct StarsView: View {
         case large
     }
     
-    @Binding var value: Int
+    @Binding var value: UInt
     
     let size: Size
     let editable: Bool 
@@ -37,7 +37,7 @@ struct StarsView: View {
                     .foregroundColor(.blue)
                     .allowsHitTesting(editable) // to disable tap recongizer while not editable
                     .onTapGesture {
-                        value = index
+                        value = UInt(index)
                     }.imageScale(imageScale)
             }
         }
